@@ -30,7 +30,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         /**
          * Login Routes
          */
-        Route::get('/login', 'LoginController@show')->name('login.show');
+        Route::get('/login', 'LoginController@show')->name('login');
         Route::post('/login', 'LoginController@login')->name('login.perform');
 
     });
@@ -40,5 +40,12 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
          * Logout Routes
          */
         Route::get('/logout', 'LogoutController@perform')->name('logout.perform');
+    
+        /**
+         * Posts Routes
+         */
+        Route::get('posts', 'PostsController@posts')->name('posts');
+        Route::post('posts', 'PostsController@postPost')->name('posts.post');
+        Route::get('posts/{id}', 'PostsController@show')->name('posts.show');
     });
 });
