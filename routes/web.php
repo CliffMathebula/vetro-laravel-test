@@ -47,5 +47,6 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('posts', 'PostsController@posts')->name('posts');
         Route::post('posts', 'PostsController@postPost')->name('posts.post');
         Route::get('posts/{id}', 'PostsController@show')->name('posts.show');
+        Route::get('post', 'PostsController@show_create')->name('post');
     });
 });

@@ -5,7 +5,8 @@
         @auth
         <h1>Dashboard</h1>
         <p class="lead">Only authenticated users can access this section.</p>
-        <a class="btn btn-lg btn-primary" href="https://codeanddeploy.com" role="button">View more tutorials here &raquo;</a>
+        <a class="btn btn-lg btn-primary" href="{{'/posts'}}" role="button">View all posts &raquo;</a>
+        <a class="btn btn-lg btn-primary" href="{{'/posts'}}" role="button">Create Post &raquo;</a>
         @endauth
 
         @guest

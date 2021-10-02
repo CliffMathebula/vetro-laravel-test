@@ -40,7 +40,7 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('postsShow', compact('post'));
+        return view('viewPost', compact('post'));
     }
 
     /**
