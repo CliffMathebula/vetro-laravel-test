@@ -27,7 +27,7 @@
     <p class="lead"><strong> <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="{{ $post->averageRating }}" data-size="xs" disabled="">
             <a href="{{ route('posts.show',$post->id) }}" class="btn btn-primary btn-lg">Rate Post &raquo;</a>
 
-            <a href="{{url('post')}}/{{ $post->user_id }}" class="btn btn-info btn-lg">Edit Post &raquo;</a>
+            <a href="{{url('post_edit')}}/{{ $post->user_id }}/{{ $post->id }}" class="btn btn-info btn-lg">Edit Post &raquo;</a>
             <a href="{{url('post')}}/{{ $post->id }}/{{ $post->user_id }}" class="btn btn-danger btn-lg">Delete &raquo;</a>
 
         </strong></p>
