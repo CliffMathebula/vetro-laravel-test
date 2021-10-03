@@ -1,7 +1,7 @@
 @extends('layouts.auth-master')
 
 @section('content')
-<a href="{{'/'}}" class="nav-link px-2 text-secondary"><<<  Go Back</a>
+<a href="{{'/'}}" class="nav-link px-2 text-secondary">Home </a>
 
 <hr/>
 <form method="post" action="{{ route('login.perform') }}">

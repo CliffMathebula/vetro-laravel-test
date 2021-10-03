@@ -90,7 +90,7 @@ class PostsController extends Controller
         request()->validate([
             'name' => ['required', 'string', 'min:5', 'max:200'],
             'title' => ['required', 'string', 'min:5', 'max:200'],
-            'content' => ['required', 'string', 'min:50', 'max:5000']
+            'content' => ['required', 'string', 'min:10', 'max:5000']
         ]);
 
         if (Post::create([
@@ -151,7 +151,7 @@ class PostsController extends Controller
         request()->validate([
             'name' => ['required', 'string', 'min:5', 'max:200'],
             'title' => ['required', 'string', 'min:5', 'max:200'],
-            'content' => ['required', 'string', 'min:50', 'max:5000'],
+            'content' => ['required', 'string', 'min:10', 'max:5000'],
             'post_id' => ['required'],
             'user_id' => ['required']
         ]);

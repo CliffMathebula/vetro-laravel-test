@@ -3,7 +3,7 @@
 @section('content')
 
 <a href="{{'/'}}" class="nav-link px-2 text-secondary">
-    <<< Go Back</a>
+    Home</a>
         <hr /><br />
         <form method="post" action="{{ route('register.perform') }}">
 
