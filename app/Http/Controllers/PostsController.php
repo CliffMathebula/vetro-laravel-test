@@ -42,7 +42,6 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-
         return view('viewPost', compact('post'));
     }
 
@@ -102,7 +101,7 @@ class PostsController extends Controller
         ])) {
             return redirect('/posts')->with('success', "Post successfully created.");
         }
-        return redirect('/post')->with('errors', "Failed to create post.");
+        return redirect('/posts')->with('errors', "Failed to create post.");
     }
 
     /**
@@ -121,5 +120,36 @@ class PostsController extends Controller
             return ('<script type="text/javascript">alert("Post deleted successfully");window.location.href = "/posts";</script>');
         }
         return ('<script type="text/javascript">alert("Failed to Delete Post, Post Belongs to another User"); window.location.href = "/posts"; </script>');
+    }
+
+
+    /**
+     * destroy post
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function edit_post(Request $request)
+    {
+        request()->validate([
+            'name' => ['required', 'string', 'min:5', 'max:200'],
+            'title' => ['required', 'string', 'min:5', 'max:200'],
+            'content' => ['required', 'string', 'min:50', 'max:5000']
+        ]);
+
+        $post_id = $request->input('post_id'); //get post idfrom the form
+        $user_id = $request->input('user_id'); //get post idfrom the form
+        $author_id = Auth::id();
+
+        if ($author_id == $user_id) {
+            $post = Post::find($post_id);
+            $post->name = $request->input('name');
+            $post->title = $request->input('title');
+            $post->content = $request->input('content');
+            $post->save();
+
+            return ('<script type="text/javascript"> alert("Post content Updated Successfully!"); window.location.href = "/posts";</script>');
+        } else {
+            return ('<script type="text/javascript">alert("Failed to Delete Post, Post Belongs to another User"); window.location.href = "/posts"; </script>');          
+        }
     }
 }
