@@ -15,7 +15,6 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
         return view('posts');
@@ -26,7 +25,6 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function posts()
     {
         $posts = Post::all();
@@ -38,7 +36,6 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function show($id)
     {
         $post = Post::find($id);
@@ -50,7 +47,6 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
     public function postPost(Request $request)
     {
         request()->validate(['rate' => 'required']);
@@ -64,25 +60,21 @@ class PostsController extends Controller
         return redirect()->route("posts");
     }
 
-
     /**
      * show Create post template
      *
      * @return \Illuminate\Http\Response
      */
-
     public function show_create()
     {
         return view('createPost');
     }
-
 
     /**
      * Create post
      *
      * @return \Illuminate\Http\Response
      */
-
     public function create_post(Request $request)
     {
         $user_id = Auth::id();
@@ -122,6 +114,24 @@ class PostsController extends Controller
         return ('<script type="text/javascript">alert("Failed to Delete Post, Post Belongs to another User"); window.location.href = "/posts"; </script>');
     }
 
+    /**
+     * show template to update post
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function select_post(Request $request)
+    {
+
+        $user_id = Auth::id(); //logged in user id
+        $author_id = $request['auth_id']; //user id of post creater
+        $post_id = $request['post_id']; //post id
+
+        if ($user_id == $author_id) { //cheks to see if post belong to the user
+            $post_details = DB::table('posts')->where('id', $post_id)->orderBy('id', 'desc')->get();
+            return view('edit_post', ['post_details' => $post_details]);
+        }
+        return ('<script type="text/javascript">alert("Error! You cannot edit a post that is not posted by you");window.location.href = "/posts"; </script>');
+    }
 
     /**
      * destroy post
@@ -133,14 +143,16 @@ class PostsController extends Controller
         request()->validate([
             'name' => ['required', 'string', 'min:5', 'max:200'],
             'title' => ['required', 'string', 'min:5', 'max:200'],
-            'content' => ['required', 'string', 'min:50', 'max:5000']
+            'content' => ['required', 'string', 'min:50', 'max:5000'],
+            'post_id' => ['required'],
+            'user_id' => ['required']
         ]);
 
         $post_id = $request->input('post_id'); //get post idfrom the form
         $user_id = $request->input('user_id'); //get post idfrom the form
         $author_id = Auth::id();
 
-        if ($author_id == $user_id) {
+        if ($author_id == $user_id) { //compare the current user_id and post_id if are the same to confirm if post belong to the user
             $post = Post::find($post_id);
             $post->name = $request->input('name');
             $post->title = $request->input('title');
@@ -148,8 +160,8 @@ class PostsController extends Controller
             $post->save();
 
             return ('<script type="text/javascript"> alert("Post content Updated Successfully!"); window.location.href = "/posts";</script>');
-        } else {
-            return ('<script type="text/javascript">alert("Failed to Delete Post, Post Belongs to another User"); window.location.href = "/posts"; </script>');          
+        } else { //retur this alert if post doesn't belong to the current logged in user
+            return ('<script type="text/javascript">alert("Failed to Update Post, Post Belongs to another User"); window.location.href = "/posts"; </script>');
         }
     }
 }
