@@ -16,8 +16,8 @@ $ sudo apt-get install git composer -y
 Once the installation is done, clone the git repository, use the following :
 Before cloning navigate to the director where you want to clone project to, in my case its /var/www/html:
 
-cd /var/www/html
-git clone https://github.com/CliffMathebula/vetro-media-php-test.git
+$ cd /var/www/html
+$ git clone https://github.com/CliffMathebula/vetro-media-php-test.git
 
 Install PHP dependencies:
 composer install
