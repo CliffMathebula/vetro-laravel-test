@@ -35,7 +35,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
 
     });
 
-    Route::group(['middleware' => ['auth']], function() {
+    Route::group(['middleware' => ['auth']], function() {//middleware routes with authorization required
         /**
          * Logout Routes
          */
@@ -49,6 +49,8 @@ Route::group(['namespace' => 'App\Http\Controllers'], function()
         Route::get('posts/{id}', 'PostsController@show')->name('posts.show');
         Route::get('post', 'PostsController@show_create')->name('post');
         Route::post('post', 'PostsController@create_post')->name('post.perform');
-        Route::get('post/{id}/{user_id}', 'PostsController@destroy')->name('post.perform');
+        Route::get('post/{id}/{user_id}', 'PostsController@destroy')->name('post.delete');
+        Route::post('edit_post', 'PostsController@edit_post')->name('edit_post');
+        Route::get('post_edit/{auth_id}/{post_id}', 'PostsController@select_post')->name('post_edit');
     });
 });
