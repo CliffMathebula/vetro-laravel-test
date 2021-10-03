@@ -1,4 +1,4 @@
-@extends('layouts.rate-master')
+@extends('layouts.app-master')
 @section('content')
 <div class="container">
     <div class="row">
