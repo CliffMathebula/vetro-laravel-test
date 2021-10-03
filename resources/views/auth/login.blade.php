@@ -1,7 +1,9 @@
 @extends('layouts.auth-master')
 
 @section('content')
+<a href="{{'/'}}" class="nav-link px-2 text-secondary"><<<  Go Back</a>
 
+<hr/>
 <form method="post" action="{{ route('login.perform') }}">
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />

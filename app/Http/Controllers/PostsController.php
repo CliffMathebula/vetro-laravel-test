@@ -38,8 +38,16 @@ class PostsController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        return view('viewPost', compact('post'));
+        /**
+         * this avoids returning of laravel errors if post not available
+         *  it will redirect user back to posts
+         *  especially if user changes the user id on the browser link 
+         **/
+        if ($post = Post::find($id)) {
+            return view('viewPost', compact('post'));
+        } else {
+            return redirect('/posts')->with('errors', "post not available");
+        }
     }
 
     /**
@@ -91,9 +99,9 @@ class PostsController extends Controller
             'title' => $request['title'],
             'content' => $request['content']
         ])) {
-            return redirect('/posts')->with('success', "Post successfully created.");
+            return ('<script type="text/javascript">alert("Post created successfully");window.location.href = "/posts";</script>');
         }
-        return redirect('/posts')->with('errors', "Failed to create post.");
+        return redirect('/posts');
     }
 
     /**

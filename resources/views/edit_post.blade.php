@@ -1,5 +1,4 @@
 @extends('layouts.app-master')
-
 @section('content')
 <div class="col">
     <div class="card text-white bg-secondary">
@@ -7,7 +6,6 @@
             <h5 class="card-title text-center text-white"><small>EDIT POST DETAILS</small></h5>
         </div>
     </div>
-
     <div class="card text-white bg-light">
         <div class="card-body">
             <!-- Returns the error by dislaying the alert  with the error message -->
@@ -29,12 +27,10 @@
                 </ul>
             </div>
             @endif
-
             <form method="post" action="{{ route('edit_post') }}">
                 @csrf
                 @if (!empty($post_details))
                 @foreach($post_details as $post)
-               
                 <div class="form-group row">
                     <label for="surname" class="col-md-4 col-form-label text-md-left text-dark">{{ __('Post Name') }}</label>
                     <div class="col-md-6">
@@ -46,7 +42,6 @@
                         @enderror
                     </div>
                 </div>
-               
                 <div class="form-group row">
                     <label for="surname" class="col-md-4 col-form-label text-md-left text-dark">{{ __('Post Title') }}</label>
                     <div class="col-md-6">
@@ -58,7 +53,6 @@
                         @enderror
                     </div>
                 </div>
-
                 <div class="form-group row">
                     <label for="cellphone" class="col-md-4 col-form-label text-md-left text-dark">{{ __('Post Content') }}</label>
                     <div class="col-md-6">

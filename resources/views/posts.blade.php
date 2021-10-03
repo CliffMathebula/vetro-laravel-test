@@ -3,6 +3,8 @@
 @section('content')
 <div class="bg-secondary p-5 rounded">
     @auth
+    <a href="{{'/'}}" class="nav-link px-2 text-white"><<<  Go Back</a>
+<br/><br/>
     <h1 class="lead text-white"><strong>Only the author of the posts can delete or update it.</strong></h1>
     @endauth
 </div>
