@@ -48,7 +48,7 @@
                 <div class="form-group row">
                     <label for="title" class="col-md-4 col-form-label text-md-left text-dark">{{ __('Post Title') }}</label>
                     <div class="col-md-6">
-                        <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="" required autocomplete="Title" autofocus>
+                        <input id="title" type="text" class="form-control @error('Post Title') is-invalid @enderror" name="title" value="" required autocomplete="Title" autofocus>
                         @error('title')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -76,7 +76,7 @@
                         <button type="submit" class="btn btn-primary">
                             {{ __('Submit') }}
                         </button>
-                        <a href="/home" class="btn btn-warning">
+                        <a href="/posts" class="btn btn-warning">
                             {{ __('cancel') }}
                         </a>
                     </div>
